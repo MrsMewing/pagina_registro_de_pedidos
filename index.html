@@ -16,21 +16,24 @@
             text-align: center;
             background: #1abc9c;
             color: #fff;
-            margin: 0 auto 24px auto;
-            padding: 32px 32px 16px 32px;
-            font-size: 2.2rem;
-            letter-spacing: 1px;
-            border-radius: 12px;
+            margin: 0 auto 40px auto;
+            /* Puedes modificar el tamaño del fondo aquí: */
+            padding: 64px 64px 32px 64px; /* <-- Cambia estos valores para el fondo */
+            /* Puedes modificar el tamaño del texto aquí: */
+            font-size: 3.5rem; /* <-- Cambia este valor para el tamaño del texto */
+            letter-spacing: 1.5px;
+            border-radius: 18px;
             box-sizing: border-box;
             width: auto;
-            min-width: 220px;
-            max-width: 95vw;
+            min-width: 260px;
+            max-width: 98vw;
+            box-shadow: 0 4px 18px rgba(44, 62, 80, 0.12);
         }
         .titulo-principal-container {
             width: 100%;
             display: flex;
             justify-content: center;
-            margin-bottom: 24px;
+            margin-bottom: 40px;
         }
         .navbar {
             display: flex;
@@ -38,17 +41,18 @@
             padding: 0;
             justify-content: center;
             flex-wrap: wrap;
+            min-height: 68px;
         }
         .navbar button {
             background: none;
             border: none;
             color: #fff;
-            padding: 16px 24px;
-            font-size: 16px;
+            padding: 24px 36px;
+            font-size: 1.35rem;
             cursor: pointer;
             transition: background 0.2s;
-            flex: 1 1 100px;
-            min-width: 90px;
+            flex: 1 1 130px;
+            min-width: 120px;
         }
         .navbar button.active,
         .navbar button:hover {
@@ -63,10 +67,17 @@
             padding: 32px;
         }
         .info-dia {
-            font-size: 1.2rem;
-            margin-bottom: 24px;
+            /* Puedes modificar el tamaño y estilo aquí: */
+            font-size: 2rem; /* <-- Cambia este valor para el tamaño del texto */
+            margin-bottom: 28px;
             text-align: center;
-            color: #2d3e50;
+            color: #1abc9c;
+            font-weight: bold;
+            background: #eafaf7;
+            border-radius: 8px;
+            padding: 18px 0;
+            box-shadow: 0 2px 8px rgba(44, 62, 80, 0.06);
+            letter-spacing: 1px;
         }
         .pedido-lista {
             list-style: none;
@@ -150,6 +161,22 @@
                 max-width: 98vw;
                 padding: 16px;
             }
+            .titulo-principal {
+                font-size: 2.3rem;
+                padding: 40px 24px 18px 24px;
+            }
+            .navbar button {
+                font-size: 1.1rem;
+                padding: 18px 20px;
+                min-width: 100px;
+            }
+            .navbar {
+                min-height: 54px;
+            }
+            .info-dia {
+                font-size: 1.3rem;
+                padding: 12px 0;
+            }
         }
         @media (max-width: 600px) {
             body {
@@ -160,8 +187,8 @@
                 margin: 16px 4px;
             }
             .titulo-principal {
-                font-size: 1.3rem;
-                padding: 20px 20px 10px 20px;
+                font-size: 1.5rem;
+                padding: 20px 10px 10px 10px;
                 margin-bottom: 16px;
             }
             .navbar {
@@ -171,6 +198,7 @@
                 justify-content: flex-start;
                 scrollbar-width: thin;
                 scrollbar-color: #1abc9c #2d3e50;
+                min-height: 44px;
             }
             .navbar::-webkit-scrollbar {
                 height: 6px;
@@ -184,13 +212,13 @@
             }
             .navbar button {
                 flex: 0 0 auto;
-                padding: 10px 16px;
-                font-size: 13px;
+                padding: 14px 12px;
+                font-size: 1rem;
                 min-width: 90px;
             }
             .info-dia {
-                font-size: 1rem;
-                margin-bottom: 16px;
+                font-size: 1.05rem;
+                padding: 8px 0;
             }
             .pedido-item {
                 flex-direction: column;
@@ -219,9 +247,13 @@
                 padding: 12px 8px 6px 8px;
             }
             .navbar button {
-                font-size: 11px;
-                padding: 8px 8px;
+                font-size: 0.9rem;
+                padding: 10px 6px;
                 min-width: 70px;
+            }
+            .info-dia {
+                font-size: 0.9rem;
+                padding: 5px 0;
             }
         }
     </style>
