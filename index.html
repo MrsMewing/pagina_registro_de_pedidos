@@ -12,21 +12,32 @@
             padding-top: 32px;
         }
         .titulo-principal {
+            display: inline-block;
             text-align: center;
             background: #1abc9c;
             color: #fff;
             margin: 0 auto 24px auto;
-            padding: 32px 0 16px 0;
+            padding: 32px 32px 16px 32px;
             font-size: 2.2rem;
             letter-spacing: 1px;
-            width: 100%;
+            border-radius: 12px;
             box-sizing: border-box;
+            width: auto;
+            min-width: 220px;
+            max-width: 95vw;
+        }
+        .titulo-principal-container {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            margin-bottom: 24px;
         }
         .navbar {
             display: flex;
             background: #2d3e50;
             padding: 0;
             justify-content: center;
+            flex-wrap: wrap;
         }
         .navbar button {
             background: none;
@@ -36,6 +47,8 @@
             font-size: 16px;
             cursor: pointer;
             transition: background 0.2s;
+            flex: 1 1 100px;
+            min-width: 90px;
         }
         .navbar button.active,
         .navbar button:hover {
@@ -68,22 +81,32 @@
             margin-bottom: 12px;
             padding: 12px 16px;
             border-radius: 5px;
+            flex-wrap: wrap;
         }
         .pedido-detalles {
             display: flex;
             flex-direction: column;
             gap: 2px;
+            min-width: 0;
+            flex: 2 1 180px;
         }
         .pedido-nombre {
             font-weight: bold;
             color: #1abc9c;
+            word-break: break-word;
         }
         .pedido-info {
             font-size: 0.97em;
             color: #555;
+            word-break: break-word;
+        }
+        .pedido-acciones {
+            display: flex;
+            flex-direction: row;
+            gap: 8px;
+            margin-left: 16px;
         }
         .pedido-acciones button {
-            margin-left: 8px;
             background: #e74c3c;
             color: #fff;
             border: none;
@@ -109,6 +132,7 @@
             border: 1px solid #ccc;
             border-radius: 3px;
             font-size: 15px;
+            min-width: 0;
         }
         .formulario-pedido button {
             background: #1abc9c;
@@ -118,32 +142,94 @@
             border-radius: 3px;
             cursor: pointer;
             font-size: 15px;
+            flex: 1 1 100px;
+            min-width: 100px;
+        }
+        @media (max-width: 800px) {
+            .container {
+                max-width: 98vw;
+                padding: 16px;
+            }
         }
         @media (max-width: 600px) {
             body {
                 padding-top: 16px;
             }
             .container {
-                padding: 16px;
+                padding: 10px;
+                margin: 16px 4px;
             }
             .titulo-principal {
                 font-size: 1.3rem;
-                padding: 20px 0 10px 0;
+                padding: 20px 20px 10px 20px;
                 margin-bottom: 16px;
             }
+            .navbar {
+                flex-wrap: nowrap;
+                overflow-x: auto;
+                -webkit-overflow-scrolling: touch;
+                justify-content: flex-start;
+                scrollbar-width: thin;
+                scrollbar-color: #1abc9c #2d3e50;
+            }
+            .navbar::-webkit-scrollbar {
+                height: 6px;
+            }
+            .navbar::-webkit-scrollbar-thumb {
+                background: #1abc9c;
+                border-radius: 4px;
+            }
+            .navbar::-webkit-scrollbar-track {
+                background: #2d3e50;
+            }
             .navbar button {
-                padding: 12px 8px;
-                font-size: 14px;
+                flex: 0 0 auto;
+                padding: 10px 16px;
+                font-size: 13px;
+                min-width: 90px;
+            }
+            .info-dia {
+                font-size: 1rem;
+                margin-bottom: 16px;
+            }
+            .pedido-item {
+                flex-direction: column;
+                align-items: flex-start;
+                padding: 10px 8px;
+            }
+            .pedido-acciones {
+                margin-left: 0;
+                margin-top: 8px;
+                width: 100%;
+                justify-content: flex-start;
             }
             .formulario-pedido {
                 flex-direction: column;
                 gap: 8px;
             }
+            .formulario-pedido input,
+            .formulario-pedido button {
+                width: 100%;
+                min-width: 0;
+            }
+        }
+        @media (max-width: 400px) {
+            .titulo-principal {
+                font-size: 1rem;
+                padding: 12px 8px 6px 8px;
+            }
+            .navbar button {
+                font-size: 11px;
+                padding: 8px 8px;
+                min-width: 70px;
+            }
         }
     </style>
 </head>
 <body>
-    <h1 class="titulo-principal">¡Organiza tus pedidos de la semana fácilmente!</h1>
+    <div class="titulo-principal-container">
+        <h1 class="titulo-principal">¡Organiza tus pedidos de la semana fácilmente!</h1>
+    </div>
     <nav class="navbar">
         <button class="active">Lunes</button>
         <button>Martes</button>
@@ -155,10 +241,7 @@
     </nav>
     <div class="container">
         <div class="info-dia">
-            <!-- Ejemplo con pedidos -->
             Lunes &mdash; 2 pedidos
-            <!-- Si no hay pedidos, puedes mostrar: -->
-            <!-- Lunes &mdash; No hay pedidos -->
         </div>
         <ul class="pedido-lista">
             <li class="pedido-item">
