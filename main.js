@@ -1,3 +1,22 @@
+const fecha_actual = new Date();
+const dia_actual = fecha_actual.toLocaleDateString("es-ES", {weekday: "long"});
+
+const pedidos_actuales = localStorage.getItem(`pedidos_${dia_actual}`);
+
+if (!pedidos_actuales || JSON.parse(pedidos_actuales).length === 0){
+    document.getElementById("dia-seleccionado").textContent = dia_actual.toUpperCase();
+    document.getElementById("contador-pedidos").textContent = `Actualmente tienes 0 pedidos`
+    document.getElementById('sin-datos').style.display = "block";
+}
+else{
+    document.getElementById('sin-datos').style.display = "none";
+    JSON.parse(pedidos_actuales).forEach((pedidos) => {
+        const nuevo_recordatorio = crear_nuevo_recordatorio_pedido(pedidos);
+        document.getElementById("contenedor-pedidos").appendChild(nuevo_recordatorio);
+    })
+
+}
+
 const modal = document.getElementById("modal");
 const addBtn = document.querySelector(".add-btn");
 
@@ -108,7 +127,7 @@ for (let indice = 0; indice < opciones_barra_de_navegacion.length; indice++){
         const contenedor_pedidos = document.getElementById("contenedor-pedidos");
         const sinDatos = document.getElementById('sin-datos');
 
-        document.getElementById("dia-seleccionado").textContent = event.target.textContent
+        document.getElementById("dia-seleccionado").textContent = event.target.textContent.toUpperCase();
         // Elimina solo los recordatorios, no el div de sin-datos
         Array.from(contenedor_pedidos.children).forEach(child => {
             if (child !== sinDatos) child.remove();
