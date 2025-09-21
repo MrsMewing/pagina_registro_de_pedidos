@@ -15,8 +15,10 @@ function crear_nuevo_recordatorio_pedido(datos_formulario){
     let recordatorio = document.createElement("div");
     recordatorio.className = "pedido";
 
+    const numero_pedido = document.getElementById("contenedor-pedidos").children.length + 1;
+
     const titulo_recordatorio = document.createElement("h2");
-    titulo_recordatorio.textContent = `Pedido #1: ${datos_formulario.nombre_empresa}`; 
+    titulo_recordatorio.textContent = `Pedido #${numero_pedido}: ${datos_formulario.nombre_empresa}`; 
 
     const cantidad_a_pagar = document.createElement("p");
     const texto_cantidad = document.createElement("strong")
@@ -75,6 +77,7 @@ enlace_formulario.addEventListener("submit", (event) => {
     recordatorios_pedidos_actuales.push(datos_estructurados_formulario)
 
     localStorage.setItem(`pedidos_${datos_estructurados_formulario.dia_de_pago}`, JSON.stringify(recordatorios_pedidos_actuales));
+    
     const nuevo_recordatorio = crear_nuevo_recordatorio_pedido(datos_estructurados_formulario);
 
     document.getElementById("contenedor-pedidos").appendChild(nuevo_recordatorio);
