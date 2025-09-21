@@ -44,6 +44,17 @@ function crear_nuevo_recordatorio_pedido(datos_formulario){
     const boton_eliminar_recordatorio = document.createElement("button");
     boton_eliminar_recordatorio.className = "delete";
     boton_eliminar_recordatorio.onclick = function () {
+        const recordatorios_guardados = JSON.parse(localStorage.getItem(`pedidos_${datos_formulario.dia_de_pago}`))
+
+        let nuevos_recordatorios_actualizados = [];
+        recordatorios_guardados.forEach((recordatorio) => {
+            if(recordatorio.nombre_empresa !== datos_formulario.nombre_empresa){
+                nuevos_recordatorios_actualizados.push(recordatorio);
+            }
+        })
+
+        localStorage.setItem(`pedidos_${datos_formulario.dia_de_pago}`, JSON.stringify(nuevos_recordatorios_actualizados));
+        document.getElementById("contador-pedidos").textContent = `Actualmente tienes ${nuevos_recordatorios_actualizados.length} pedidos`
         recordatorio.remove();
     }
     boton_eliminar_recordatorio.appendChild(document.createTextNode("Eliminar"));
