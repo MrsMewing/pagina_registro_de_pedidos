@@ -15,7 +15,7 @@ function crear_nuevo_recordatorio_pedido(datos_formulario){
     let recordatorio = document.createElement("div");
     recordatorio.className = "pedido";
 
-    const numero_pedido = document.getElementById("contenedor-pedidos").children.length + 1;
+    const numero_pedido = document.getElementById("contenedor-pedidos").children.length;
 
     const titulo_recordatorio = document.createElement("h2");
     titulo_recordatorio.textContent = `Pedido #${numero_pedido}: ${datos_formulario.nombre_empresa}`; 
@@ -82,5 +82,41 @@ enlace_formulario.addEventListener("submit", (event) => {
 
     document.getElementById("contenedor-pedidos").appendChild(nuevo_recordatorio);
 
+    document.getElementById("contador-pedidos").textContent = `Actualmente tienes ${recordatorios_pedidos_actuales.length} pedidos`
+
+    document.getElementById("sin-datos").style.display = 'none';
     modal.classList.remove("show");
 })
+
+const opciones_barra_de_navegacion = document.getElementsByTagName("nav")[0].children
+
+for (let indice = 0; indice < opciones_barra_de_navegacion.length; indice++){
+    let opcion_barra_de_navegacion = opciones_barra_de_navegacion[indice];
+
+    opcion_barra_de_navegacion.onclick = function (event) {
+        const contenedor_pedidos = document.getElementById("contenedor-pedidos");
+        const sinDatos = document.getElementById('sin-datos');
+
+        document.getElementById("dia-seleccionado").textContent = event.target.textContent
+        // Elimina solo los recordatorios, no el div de sin-datos
+        Array.from(contenedor_pedidos.children).forEach(child => {
+            if (child !== sinDatos) child.remove();
+        });
+
+        const pedidos_guardados = localStorage.getItem(`pedidos_${event.target.textContent.toLocaleLowerCase()}`);
+
+        if (!pedidos_guardados || JSON.parse(pedidos_guardados).length === 0) {
+            sinDatos.style.display = 'block';
+             document.getElementById("contador-pedidos").textContent = `Actualmente tienes 0 pedidos`
+        } else {
+            sinDatos.style.display = 'none';
+            const recordatorios_pedidos = JSON.parse(pedidos_guardados);
+
+            recordatorios_pedidos.forEach(datos_recordatorio => {
+                contenedor_pedidos.appendChild(crear_nuevo_recordatorio_pedido(datos_recordatorio));
+            })
+
+            document.getElementById("contador-pedidos").textContent = `Actualmente tienes ${recordatorios_pedidos.length} pedidos`
+        }
+    }
+}

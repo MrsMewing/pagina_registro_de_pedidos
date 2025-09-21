@@ -14,7 +14,7 @@
   <nav>
     <a href="#">Lunes</a>
     <a href="#">Martes</a>
-    <a href="#">Miércoles</a>
+    <a href="#">Miercoles</a>
     <a href="#">Jueves</a>
     <a href="#">Viernes</a>
     <a href="#">Sábado</a>
@@ -24,10 +24,15 @@
   <!-- Texto debajo de la barra -->
   <div class="info-dia">
     <h2 id="dia-seleccionado">Lunes</h2>
-    <p id="contador-pedidos">Actualmente tienes 3 pedidos</p>
+    <p id="contador-pedidos">Actualmente tienes 0 pedidos</p>
   </div>
 
-  <div class="container" id="contenedor-pedidos"></div>
+  <div class="container" id="contenedor-pedidos">
+    <div id="sin-datos" class="sin-datos" style="display:none;">
+      <h2>¡No hay pedidos guardados!</h2>
+      <p>Agrega tu primer pedido para comenzar a organizar tu semana.</p>
+    </div>
+  </div>
 
   <button class="add-btn">+</button>
 
@@ -45,7 +50,7 @@
         <select name="dia_de_pago" required>
           <option value="lunes">Lunes</option>
           <option value="martes">Martes</option>
-          <option value="miercoles">Miércoles</option>
+          <option value="miercoles">Miercoles</option>
           <option value="jueves">Jueves</option>
           <option value="viernes">Viernes</option>
           <option value="sabado">Sábado</option>
