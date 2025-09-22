@@ -1,0 +1,20 @@
+ {
+  "name": "App para gestión de pedidos",
+  "short_name": "GestionPedidos",
+  "start_url": "/index.html",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#000000",
+  "icons": [
+    {
+      "src": "/images/payment_128x128.png",
+      "sizes": "128x128",
+      "type": "image/png"
+    },
+    {
+      "src": "/images/payment_512x512.png",
+      "sizes": "512x512", 
+      "type": "image/png"
+    }
+  ]
+}
