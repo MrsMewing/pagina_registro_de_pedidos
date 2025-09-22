@@ -36,27 +36,26 @@
 
   <button class="add-btn">+</button>
 
-  <div class="modal" id="modal">
+  <!-- Modal -->
+  <div id="modal" class="modal">
     <div class="modal-content">
-      <h2>Nuevo Recordatorio</h2>
+      <span class="close-btn">&times;</span>
+      <h2>➕ Nuevo Recordatorio</h2>
+
       <form id="formulario-nuevo-recordatorio">
-        <label>Empresa:</label><br>
-        <input type="text" name="nombre_empresa" required><br><br>
-        <label>Cantidad:</label><br>
-        <input type="number" name="cantidad_a_pagar" required><br><br>
-        <label>Hora:</label><br>
-        <input type="time" name="hora_de_pago" required><br><br>
-        <label>Día:</label><br>
-        <select name="dia_de_pago" required>
-          <option value="lunes">Lunes</option>
-          <option value="martes">Martes</option>
-          <option value="miercoles">Miercoles</option>
-          <option value="jueves">Jueves</option>
-          <option value="viernes">Viernes</option>
-          <option value="sabado">Sábado</option>
-          <option value="domingo">Domingo</option>
-        </select><br><br>
-        <button type="submit" id="boton-guardar-recordatorio">Guardar</button>
+        <label for="empresa">🏢 Empresa</label>
+        <input type="text" id="empresa" name="empresa" placeholder="Ej. Electricidad S.A." required>
+
+        <label for="cantidad">💵 Cantidad</label>
+        <input type="number" id="cantidad" name="cantidad" placeholder="Ej. 250.00" required>
+
+        <label for="hora">⏰ Hora</label>
+        <input type="time" id="hora" name="hora" required>
+
+        <label for="dia">📅 Día de pago</label>
+        <input type="date" id="dia" name="dia" required>
+
+        <button type="submit" class="btn-save">Guardar Recordatorio</button>
       </form>
     </div>
   </div>
