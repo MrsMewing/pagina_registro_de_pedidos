@@ -284,6 +284,36 @@ form input:focus {
     animation: scaleIn 0.3s forwards;
 }
 
+/* Estilo para el selector de días */
+form select {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  font-size: 1rem;
+  background: #f9f9f9;
+  appearance: none; /* Quita el estilo por defecto */
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+/* Flecha personalizada */
+form select {
+  background-image: url("data:image/svg+xml;utf8,<svg fill='%234CAF50' height='20' viewBox='0 0 24 24' width='20' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/></svg>");
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  background-size: 16px;
+}
+
+form select:focus {
+  border-color: #4CAF50;
+  outline: none;
+  box-shadow: 0 0 6px rgba(76, 175, 80, 0.4);
+}
+
+
 @keyframes fadeIn {
     from { opacity: 0; }
     to { opacity: 1; }

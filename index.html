@@ -34,7 +34,7 @@
     </div>
   </div>
 
-  <button class="add-btn">+</button>
+  <button class="add-btn" id="add-btn">+</button>
 
   <!-- Modal -->
   <div id="modal" class="modal">
@@ -44,21 +44,31 @@
 
       <form id="formulario-nuevo-recordatorio">
         <label for="empresa">🏢 Empresa</label>
-        <input type="text" id="empresa" name="empresa" placeholder="Ej. Electricidad S.A." required>
+        <input type="text" id="empresa" name="nombre_empresa" placeholder="Ej. Electricidad S.A." required>
 
         <label for="cantidad">💵 Cantidad</label>
-        <input type="number" id="cantidad" name="cantidad" placeholder="Ej. 250.00" required>
+        <input type="number" id="cantidad" name="cantidad_a_pagar" placeholder="Ej. 250.00" required>
 
         <label for="hora">⏰ Hora</label>
-        <input type="time" id="hora" name="hora" required>
+        <input type="time" id="hora" name="hora_de_pago" required>
 
         <label for="dia">📅 Día de pago</label>
-        <input type="date" id="dia" name="dia" required>
+        <select id="dia_de_pago" name="dia_de_pago" required>
+          <option value="">Selecciona un día</option>
+          <option value="lunes">Lunes</option>
+          <option value="martes">Martes</option>
+          <option value="miercoles">Miércoles</option>
+          <option value="jueves">Jueves</option>
+          <option value="viernes">Viernes</option>
+          <option value="sabado">Sábado</option>
+          <option value="domingo">Domingo</option>
+        </select>
 
         <button type="submit" class="btn-save">Guardar Recordatorio</button>
       </form>
     </div>
   </div>
+
 
   <script src="main.js"></script>
 </body>

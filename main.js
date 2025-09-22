@@ -17,19 +17,6 @@ else{
 
 }
 
-const modal = document.getElementById("modal");
-const addBtn = document.querySelector(".add-btn");
-
-addBtn.addEventListener("click", () => {
-    modal.classList.add("show");
-});
-
-modal.addEventListener("click", (e) => {
-    if (e.target === modal) {
-    modal.classList.remove("show");
-    }
-});
-
 function crear_nuevo_recordatorio_pedido(datos_formulario){
     let recordatorio = document.createElement("div");
     recordatorio.className = "pedido";
@@ -115,7 +102,7 @@ enlace_formulario.addEventListener("submit", (event) => {
     document.getElementById("contador-pedidos").textContent = `Actualmente tienes ${recordatorios_pedidos_actuales.length} pedidos`
 
     document.getElementById("sin-datos").style.display = 'none';
-    modal.classList.remove("show");
+    document.getElementById("modal").style.display = "none";
 })
 
 const opciones_barra_de_navegacion = document.getElementsByTagName("nav")[0].children
@@ -150,3 +137,26 @@ for (let indice = 0; indice < opciones_barra_de_navegacion.length; indice++){
         }
     }
 }
+
+// Obtener elementos
+const modal_nuevo_recordatorio = document.getElementById("modal");
+const closeBtn = document.querySelector(".close-btn");
+const openBtn = document.getElementById("add-btn"); // tu botón flotante que abre el modal
+
+// Abrir modal
+openBtn.addEventListener("click", () => {
+    modal_nuevo_recordatorio.style.display = "flex";
+    document.getElementById("dia_de_pago").value = dia_actual;
+});
+
+// Cerrar modal con la X
+closeBtn.addEventListener("click", () => {
+    modal_nuevo_recordatorio.style.display = "none";
+});
+
+// Cerrar modal si se hace click fuera del contenido
+window.addEventListener("click", (e) => {
+    if (e.target === modal_nuevo_recordatorio) {
+        modal_nuevo_recordatorio.style.display = "none";
+    }
+});
