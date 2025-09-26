@@ -16,10 +16,8 @@ const messaging = firebase.messaging();
 
 // Escuchar notificaciones en segundo plano
 messaging.onBackgroundMessage((payload) => {
-  console.log("Notificación en background:", payload);
   self.registration.showNotification(payload.notification.title, {
     body: payload.notification.body,
     icon: "/images/payment_128x128.png",
   });
 });
-

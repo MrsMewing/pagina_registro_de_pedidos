@@ -21,9 +21,9 @@ const messaging = getMessaging(app);
 Notification.requestPermission().then(async (permission) => {
   if (permission === 'granted') {
     const respuesta_servidor = await getToken(messaging, { vapidKey: 'BAIUxKde-3H62IEiRvntzkYFAkxOXCP1KS48virNjY_RYfmb0XKAkjDhppeFWdu94--xfEAsDpUq0RaABCH1DOU'} )
-    
-    console.log('Token:', respuesta_servidor);
+
     //enviar el token al servidor mio, para guardarlo y saber a quien le mandamos la notificacion
+    
     notificar_activacion_de_notificaciones();
   }
 });
