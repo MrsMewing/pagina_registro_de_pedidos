@@ -160,3 +160,5 @@ window.addEventListener("click", (e) => {
         modal_nuevo_recordatorio.style.display = "none";
     }
 });
+
+console.log("Todo esta actualizado correctamente, talvez el token de firebase expiro o algo similar")
