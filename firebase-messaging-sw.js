@@ -18,6 +18,6 @@ const messaging = firebase.messaging();
 messaging.onBackgroundMessage((payload) => {
   self.registration.showNotification(payload.notification.title, {
     body: payload.notification.body,
-    icon: "/images/payment_128x128.png",
+    icon: "images/payment_128x128.png",
   });
 });
