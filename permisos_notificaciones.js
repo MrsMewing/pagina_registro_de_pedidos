@@ -31,10 +31,8 @@ if (estado_actual_notificaciones == "default"){
 
   Notification.requestPermission().then(async (permission) => {
     if (permission === 'granted') {
-      const respuesta_servidor = await getToken(messaging, { vapidKey: 'BEA0LJ0PG3J-fGnEwqwLWdTnhSRamFYiGnBSJjQ1BEMHj4ibDjB32dG2wZLpxAEP3k9ibHuAVaQpY1rEmp2zwNI'} )
-
       //enviar el token al servidor mio, para guardarlo y saber a quien le mandamos la notificacion
-
+      
       const icono = document.getElementById("icono-notificacion");
       icono.setAttribute("src", "images/notificaciones_activadas.png");
 
@@ -48,8 +46,6 @@ if (estado_actual_notificaciones == "default"){
 }
 
 else if  (estado_actual_notificaciones == "granted"){
-  const respuesta_servidor = await getToken(messaging, { vapidKey: 'BEA0LJ0PG3J-fGnEwqwLWdTnhSRamFYiGnBSJjQ1BEMHj4ibDjB32dG2wZLpxAEP3k9ibHuAVaQpY1rEmp2zwNI'} )
-  
   const icono = document.getElementById("icono-notificacion");
   icono.setAttribute("src", "images/notificaciones_activadas.png");
 }
