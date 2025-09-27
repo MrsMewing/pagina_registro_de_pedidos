@@ -313,6 +313,28 @@ form select:focus {
   box-shadow: 0 0 6px rgba(76, 175, 80, 0.4);
 }
 
+.notification-bell {
+  position: fixed;
+  top: 15px;
+  right: 15px;
+  background: white;
+  border-radius: 50%;
+  padding: 10px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.notification-bell:hover {
+  transform: scale(1.1);
+}
+
+.notification-bell img {
+  width: 35px;   /* tamaño visual del icono */
+  height: 35px;
+}
+
+
 
 @keyframes fadeIn {
     from { opacity: 0; }

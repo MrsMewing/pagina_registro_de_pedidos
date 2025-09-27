@@ -18,15 +18,46 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const messaging = getMessaging(app);
 
-Notification.requestPermission().then(async (permission) => {
-  if (permission === 'granted') {
-    const respuesta_servidor = await getToken(messaging, { vapidKey: 'BAIUxKde-3H62IEiRvntzkYFAkxOXCP1KS48virNjY_RYfmb0XKAkjDhppeFWdu94--xfEAsDpUq0RaABCH1DOU'} )
+if (!('Notification' in window)){
+  console.log("El navegador o app no soporta notificaciones, lo sentimos")
+}
 
-    //enviar el token al servidor mio, para guardarlo y saber a quien le mandamos la notificacion
-    
-    notificar_activacion_de_notificaciones();
-  }
-});
+const estado_actual_notificaciones = Notification.permission;
+
+//verifica si el usuario a un no ha decidido una opcion, para preguntarle nosotros
+if (estado_actual_notificaciones == "default"){
+  const icono = document.getElementById("icono-notificacion");
+  icono.setAttribute("src", "/images/notificaciones_sin_respuesta.png");
+
+  Notification.requestPermission().then(async (permission) => {
+    if (permission === 'granted') {
+      const respuesta_servidor = await getToken(messaging, { vapidKey: 'BAIUxKde-3H62IEiRvntzkYFAkxOXCP1KS48virNjY_RYfmb0XKAkjDhppeFWdu94--xfEAsDpUq0RaABCH1DOU'} )
+
+      //enviar el token al servidor mio, para guardarlo y saber a quien le mandamos la notificacion
+
+      const icono = document.getElementById("icono-notificacion");
+      icono.setAttribute("src", "/images/notificaciones_activadas.png");
+
+      notificar_activacion_de_notificaciones();
+    }
+    if(permission === "denied"){
+        const icono = document.getElementById("icono-notificacion");
+        icono.setAttribute("src", "/images/notificaciones_desactivadas.png");
+    }
+  });
+}
+
+else if  (estado_actual_notificaciones == "granted"){
+  const respuesta_servidor = await getToken(messaging, { vapidKey: 'BAIUxKde-3H62IEiRvntzkYFAkxOXCP1KS48virNjY_RYfmb0XKAkjDhppeFWdu94--xfEAsDpUq0RaABCH1DOU'} )
+  
+  const icono = document.getElementById("icono-notificacion");
+  icono.setAttribute("src", "/images/notificaciones_activadas.png");
+}
+
+else if (estado_actual_notificaciones == "denied"){
+  const icono = document.getElementById("icono-notificacion");
+  icono.setAttribute("src", "/images/notificaciones_desactivadas.png");
+}
 
 function notificar_activacion_de_notificaciones(){
   //Codigo que se ejecuta 2 segundos despues
