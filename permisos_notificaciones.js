@@ -59,6 +59,19 @@ else if (estado_actual_notificaciones == "denied"){
   icono.setAttribute("src", "images/notificaciones_desactivadas.png");
 }
 
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('/pagina_registro_de_pedidos/firebase-messaging-sw.js')
+    .then(registration => {
+      console.log('Service Worker registrado:', registration);
+
+      // 🔐 Indica a Firebase que use este service worker
+      messaging.useServiceWorker(registration);
+    })
+    .catch(err => {
+      console.error('Error al registrar el Service Worker:', err);
+    });
+}
+
 function notificar_activacion_de_notificaciones(){
   //Codigo que se ejecuta 2 segundos despues
   setTimeout(() => {
