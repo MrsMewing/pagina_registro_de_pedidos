@@ -4,15 +4,15 @@ import { getMessaging, getToken, onMessage } from 'https://www.gstatic.com/fireb
 
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
-const firebaseConfig = {
-    apiKey: "AIzaSyCrUwNd-Z-NPaYqJk4LK-zfTKF5OTYZInw",
-    authDomain: "notificaciones-push-218b7.firebaseapp.com",
-    projectId: "notificaciones-push-218b7",
-    storageBucket: "notificaciones-push-218b7.firebasestorage.app",
-    messagingSenderId: "571961259157",
-    appId: "1:571961259157:web:a60a7a860449976ac6179c",
-    measurementId: "G-XC04BVFPXM"
-};
+  const firebaseConfig = {
+    apiKey: "AIzaSyALPYM3cZnQB-H2O6iYB5OiknlL6CSy7IQ",
+    authDomain: "servicio-de-notificacion-6e3d2.firebaseapp.com",
+    projectId: "servicio-de-notificacion-6e3d2",
+    storageBucket: "servicio-de-notificacion-6e3d2.firebasestorage.app",
+    messagingSenderId: "855565543269",
+    appId: "1:855565543269:web:ec22bbe5e985fb9480638c",
+    measurementId: "G-LMZX9NZPF0"
+  };
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
@@ -31,7 +31,7 @@ if (estado_actual_notificaciones == "default"){
 
   Notification.requestPermission().then(async (permission) => {
     if (permission === 'granted') {
-      //const respuesta_servidor = await getToken(messaging, { vapidKey: 'BAIUxKde-3H62IEiRvntzkYFAkxOXCP1KS48virNjY_RYfmb0XKAkjDhppeFWdu94--xfEAsDpUq0RaABCH1DOU'} )
+      const respuesta_servidor = await getToken(messaging, { vapidKey: 'BEA0LJ0PG3J-fGnEwqwLWdTnhSRamFYiGnBSJjQ1BEMHj4ibDjB32dG2wZLpxAEP3k9ibHuAVaQpY1rEmp2zwNI'} )
 
       //enviar el token al servidor mio, para guardarlo y saber a quien le mandamos la notificacion
 
@@ -48,7 +48,7 @@ if (estado_actual_notificaciones == "default"){
 }
 
 else if  (estado_actual_notificaciones == "granted"){
-  const respuesta_servidor = await getToken(messaging, { vapidKey: 'BAIUxKde-3H62IEiRvntzkYFAkxOXCP1KS48virNjY_RYfmb0XKAkjDhppeFWdu94--xfEAsDpUq0RaABCH1DOU'} )
+  const respuesta_servidor = await getToken(messaging, { vapidKey: 'BEA0LJ0PG3J-fGnEwqwLWdTnhSRamFYiGnBSJjQ1BEMHj4ibDjB32dG2wZLpxAEP3k9ibHuAVaQpY1rEmp2zwNI'} )
   
   const icono = document.getElementById("icono-notificacion");
   icono.setAttribute("src", "images/notificaciones_activadas.png");
