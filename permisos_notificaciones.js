@@ -19,7 +19,7 @@ const app = initializeApp(firebaseConfig);
 const messaging = getMessaging(app);
 
 if (!('Notification' in window)){
-  console.log("El navegador o app no soporta notificaciones, lo sentimos")
+  alert("El navegador o app no soporta notificaciones, lo sentimos")
 }
 
 const estado_actual_notificaciones = Notification.permission;
