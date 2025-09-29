@@ -40,6 +40,13 @@ function crear_nuevo_recordatorio_pedido(datos_formulario){
     hora_de_pago.appendChild(texto_hora);
     hora_de_pago.appendChild(document.createTextNode(datos_formulario.hora_de_pago));
 
+    const fecha_de_pago = document.createElement("p");
+    const texto_fecha = document.createElement("strong");
+    texto_fecha.appendChild(document.createTextNode("Fecha de pago: "));
+
+    fecha_de_pago.appendChild(texto_fecha);
+    fecha_de_pago.appendChild(document.createTextNode(datos_formulario.fecha_de_pago));
+
     const contenedor_botones = document.createElement("div");
     contenedor_botones.className = "acciones";
 
@@ -71,6 +78,7 @@ function crear_nuevo_recordatorio_pedido(datos_formulario){
     recordatorio.appendChild(titulo_recordatorio);
     recordatorio.appendChild(cantidad_a_pagar);
     recordatorio.appendChild(hora_de_pago);
+    recordatorio.appendChild(fecha_de_pago);
     recordatorio.appendChild(contenedor_botones)
 
     return recordatorio;

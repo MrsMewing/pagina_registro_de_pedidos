@@ -1,7 +1,7 @@
  {
   "name": "App para gestión de pedidos",
   "short_name": "GestionPedidos",
-  "start_url": "https://mrsmewing.github.io/pagina_registro_de_pedidos/",
+  "start_url": "/index.html",
   "display": "standalone",
   "background_color": "#ffffff",
   "theme_color": "#000000",

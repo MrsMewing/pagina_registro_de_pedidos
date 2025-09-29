@@ -68,7 +68,7 @@ else if (estado_actual_notificaciones == "denied"){
 }
 
 if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('/pagina_registro_de_pedidos/firebase-messaging-sw.js')
+  navigator.serviceWorker.register('firebase-messaging-sw.js')
     .then(registration => {
       console.log('Service Worker registrado:', registration);
 
