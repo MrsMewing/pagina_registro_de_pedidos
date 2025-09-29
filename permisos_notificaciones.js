@@ -22,6 +22,8 @@ if (!('Notification' in window)){
   alert("El navegador o app no soporta notificaciones, lo sentimos")
 }
 
+let barra_de_estado_activado = false;
+let mensajes_en_espera = [];
 const estado_actual_notificaciones = Notification.permission;
 
 //verifica si el usuario a un no ha decidido una opcion, para preguntarle nosotros
@@ -36,7 +38,7 @@ if (estado_actual_notificaciones == "default"){
       const icono = document.getElementById("icono-notificacion");
       icono.setAttribute("src", "images/notificaciones_activadas.png");
 
-      alert("Notificaciones activadas, ya podremos enviarte informacion relevante")
+      setStatusBar("Notificaciones activadas, ya podremos enviarte informacion relevante", "#15803d", "#bbf7d0");
 
       setTimeout(() => {
         if (Notification.permission === 'granted') {
@@ -47,7 +49,7 @@ if (estado_actual_notificaciones == "default"){
           }
           );
         }
-      }, 2000);
+      }, 3000);
 
     }
     if(permission === "denied"){
@@ -74,29 +76,44 @@ if ('serviceWorker' in navigator) {
 
       setStatusBar("Service Worker activo y notificaciones permitidas", "#15803d", "#bbf7d0");
 
-      setTimeout(() => setStatusBar("", "", "", true), 3000);
-
     })
     .catch(err => {
       setStatusBar('Error al registrar el Service Worker:', "#b91c1c", "#fee2e2");
-
-      setTimeout(() => setStatusBar("", "", "", true), 3000);
 
       console.log("Error al registrar el service worker: ", err);
     });
 }
 
-function setStatusBar(msg, color = "#2563eb", bg = "#f1f5f9", ocultar_estado=false) {
+//cuando se llama a la funcion se actualiza el cuadro de informacion con texto y despues de X tiempo se quita
+//si la funcion se llama pero hay algo aun en la pantalla mostrandose, esperar hasta que se quite y mostrar ese nuevo texto
+async function setStatusBar(msg, color = "#2563eb", bg = "#f1f5f9", ocultar_estado=false) {
   const bar = document.getElementById('status-bar');
-  
-  if (ocultar_estado){
-    bar.style.display = "none";
-    return null;
+
+  mensajes_en_espera.push({mensaje: msg, color: color, bg: bg});
+
+  for (let mensaje_en_espera of mensajes_en_espera){
+    const respuesta_actualizacion_barra = await actualizar_barra_de_estado( bar, mensaje_en_espera.mensaje, mensaje_en_espera.color, mensaje_en_espera.bg)
   }
 
-  bar.style.display = "block";
-  bar.textContent = msg;
-  bar.style.color = color;
-  bar.style.background = bg;
+  console.log("Todos los mensajes fueron mostrados correctamente");
+  mensajes_en_espera = [];
+  return null;
 
+}
+
+function actualizar_barra_de_estado(bar, msg, color, bg){
+  return new Promise((resolve, reject) => {
+      bar.textContent = msg;
+      bar.style.color = color;
+      bar.style.background = bg;
+
+      bar.style.display = "block";
+      barra_de_estado_activado = true;
+
+      setTimeout(() => {
+        bar.style.display = "none";
+        barra_de_estado_activado = false;
+        resolve(true);
+      }, 2000);
+  })
 }
