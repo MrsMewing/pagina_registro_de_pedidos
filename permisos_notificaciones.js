@@ -36,7 +36,19 @@ if (estado_actual_notificaciones == "default"){
       const icono = document.getElementById("icono-notificacion");
       icono.setAttribute("src", "images/notificaciones_activadas.png");
 
-      notificar_activacion_de_notificaciones();
+      alert("Notificaciones activadas, ya podremos enviarte informacion relevante")
+
+      setTimeout(() => {
+        if (Notification.permission === 'granted') {
+          new Notification('¡Notificaciónes activadas!',
+            {
+            body: "Te notificaremos solo cuando haya un recordatorio pendiente",
+            icon: "images/payment_128x128.png",
+          }
+          );
+        }
+      }, 2000);
+
     }
     if(permission === "denied"){
         const icono = document.getElementById("icono-notificacion");
@@ -59,24 +71,32 @@ if ('serviceWorker' in navigator) {
   navigator.serviceWorker.register('/pagina_registro_de_pedidos/firebase-messaging-sw.js')
     .then(registration => {
       console.log('Service Worker registrado:', registration);
+
+      setStatusBar("Service Worker activo y notificaciones permitidas", "#15803d", "#bbf7d0");
+
+      setTimeout(() => setStatusBar("", "", "", true), 3000);
+
     })
     .catch(err => {
-      console.error('Error al registrar el Service Worker:', err);
+      setStatusBar('Error al registrar el Service Worker:', "#b91c1c", "#fee2e2");
+
+      setTimeout(() => setStatusBar("", "", "", true), 3000);
+
+      console.log("Error al registrar el service worker: ", err);
     });
 }
 
-function notificar_activacion_de_notificaciones(){
-  //Codigo que se ejecuta 2 segundos despues
-  setTimeout(() => {
-    Notification.requestPermission().then(permission => {
-      if (permission === 'granted') {
-        new Notification('¡Notificaciónes activadas!',
-          {
-          body: "Te notificaremos solo cuando haya un recordatorio pendiente",
-          icon: "images/payment_128x128.png",
-        }
-        );
-      }
-    });
-  }, 2000);
+function setStatusBar(msg, color = "#2563eb", bg = "#f1f5f9", ocultar_estado=false) {
+  const bar = document.getElementById('status-bar');
+  
+  if (ocultar_estado){
+    bar.style.display = "none";
+    return null;
+  }
+
+  bar.style.display = "block";
+  bar.textContent = msg;
+  bar.style.color = color;
+  bar.style.background = bg;
+
 }
