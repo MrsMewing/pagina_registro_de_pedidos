@@ -154,7 +154,9 @@ const openBtn = document.getElementById("add-btn"); // tu botón flotante que ab
 // Abrir modal
 openBtn.addEventListener("click", () => {
     modal_nuevo_recordatorio.style.display = "flex";
-    document.getElementById("dia_de_pago").value = dia_actual;
+    let dia_actual_seleccionado = document.getElementById("dia-seleccionado").innerText.toLowerCase();
+
+    document.getElementById("dia_de_pago").value = dia_actual_seleccionado;
 });
 
 // Cerrar modal con la X
