@@ -19,7 +19,7 @@ const app = initializeApp(firebaseConfig);
 const messaging = getMessaging(app);
 
 if (!('Notification' in window)){
-  alert("El navegador o app no soporta notificaciones, lo sentimos")
+  setStatusBar("El navegador o app no soporta notificaciones, lo sentimos", "#b91c1c", "#fee2e2");
 }
 
 let barra_de_estado_activado = false;
